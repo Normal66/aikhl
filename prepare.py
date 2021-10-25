@@ -135,23 +135,6 @@ def GetTrainingData(_df, seasons):
     return xTrain, yTrain
 
 
-def createGamePrediction(_model, team1_vector, team2_vector):
-    diff = [[a - b for a, b in zip(team1_vector, team2_vector)]]
-    predictions = _model.predict(diff)
-    return predictions
-
-
-def evaluate(model, test_features, test_labels):
-    predictions = model.predict(test_features)
-    errors = abs(predictions - test_labels)
-    mape = 100 * np.mean(errors / test_labels)
-    accuracy = 100 - mape
-    print('Model Performance')
-    print('Average Error: {:0.4f} degrees.'.format(np.mean(errors)))
-    print('Accuracy = {:0.2f}%.'.format(accuracy))
-    return accuracy
-
-
 def prepare_and_training():
     print('Очистка данных')
     _src = do_clean_data()
